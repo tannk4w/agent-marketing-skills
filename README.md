@@ -63,7 +63,45 @@ agent-marketing/
         └── SKILL.md
 ```
 
-## 3. Hướng dẫn sử dụng
+## 3. Cài nhanh bằng install.sh
+
+Có thể cài nhanh toàn bộ package vào một Hermes profile bằng lệnh:
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/tannk4w/agent-marketing-skills/main/install.sh | bash
+```
+
+Mặc định script sẽ cài vào profile `marketing`.
+
+Cài vào profile khác:
+
+```bash
+PROFILE=content curl -fsSL https://raw.githubusercontent.com/tannk4w/agent-marketing-skills/main/install.sh | bash
+```
+
+Cài kèm Exa API key:
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/tannk4w/agent-marketing-skills/main/install.sh | \
+  PROFILE=marketing EXA_API_KEY=your_exa_api_key_here bash
+```
+
+Sau khi cài:
+
+```bash
+hermes --profile marketing -s marketing-orchestration
+```
+
+Script sẽ tự động:
+
+- tạo profile nếu chưa có
+- copy `SOUL.md` và `AGENTS.md`
+- copy `memory/MEMORY.md` và `memory/USER.md`
+- copy toàn bộ marketing skills
+- bật toolset `web` nếu Hermes CLI khả dụng
+- ghi `EXA_API_KEY` vào profile `.env` nếu bạn truyền biến môi trường này
+
+## 4. Hướng dẫn cài thủ công
 
 ### Bước 1: Tạo profile mới và setup cơ bản
 
@@ -242,7 +280,7 @@ Hoặc cụ thể hơn:
 Dùng marketing-orchestration để viết landing page copy cho sản phẩm này. Trước khi viết hãy hỏi đủ brief, bao gồm ngôn ngữ bài viết.
 ```
 
-## 4. Kiểm tra sau khi import
+## 5. Kiểm tra sau khi import
 
 Chạy kiểm tra cấu trúc skill:
 
@@ -276,7 +314,7 @@ Kỳ vọng đúng:
 - Agent không tự mặc định tiếng Việt chỉ vì prompt viết bằng tiếng Việt.
 - Agent route qua brainstorm → research → writing → self-review khi tạo final content.
 
-## 5. Cách cập nhật skill sau này
+## 6. Cách cập nhật skill sau này
 
 Quy ước project-first:
 
@@ -297,7 +335,7 @@ cp -a /home/tannk/agent-marketing/skills/<skill-name> \
 
 Không cần làm source-of-truth comparison hoặc drift check trừ khi bạn muốn kiểm tra riêng.
 
-## 6. Ghi chú bảo mật và chất lượng
+## 7. Ghi chú bảo mật và chất lượng
 
 - Không commit API key thật vào repo.
 - Không đưa brand/product private memory vào `memory/MEMORY.md` nếu đây là package reusable.
