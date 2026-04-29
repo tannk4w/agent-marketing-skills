@@ -71,22 +71,33 @@ Có thể cài nhanh toàn bộ package vào một Hermes profile bằng lệnh:
 curl -fsSL https://raw.githubusercontent.com/tannk4w/agent-marketing-skills/main/install.sh | bash
 ```
 
-Mặc định script sẽ cài vào profile `marketing`.
+Installer sẽ hỏi trực tiếp trong terminal:
 
-Cài vào profile khác:
-
-```bash
-PROFILE=content curl -fsSL https://raw.githubusercontent.com/tannk4w/agent-marketing-skills/main/install.sh | bash
+```text
+Hermes profile name [marketing]:
+EXA_API_KEY (optional, press Enter to skip):
 ```
 
-Cài kèm Exa API key:
+- Với `Hermes profile name`, bấm Enter để dùng mặc định `marketing`, hoặc nhập profile khác như `content`.
+- Nếu profile chưa tồn tại và Hermes CLI khả dụng, script sẽ tạo profile mới rồi import package vào như thường.
+- Với `EXA_API_KEY`, bấm Enter để bỏ qua. Bạn có thể thêm key sau vào file `.env` của profile.
 
-```bash
-curl -fsSL https://raw.githubusercontent.com/tannk4w/agent-marketing-skills/main/install.sh | \
-  PROFILE=marketing EXA_API_KEY=your_exa_api_key_here bash
+Ví dụ cài vào profile `content` và bỏ qua Exa API key:
+
+```text
+$ curl -fsSL https://raw.githubusercontent.com/tannk4w/agent-marketing-skills/main/install.sh | bash
+Hermes profile name [marketing]: content
+EXA_API_KEY (optional, press Enter to skip):
 ```
 
-Sau khi cài:
+Vẫn có thể dùng biến môi trường nếu muốn đặt giá trị mặc định cho prompt:
+
+```bash
+PROFILE=content EXA_API_KEY=your_exa_api_key_here \
+  bash -c "$(curl -fsSL https://raw.githubusercontent.com/tannk4w/agent-marketing-skills/main/install.sh)"
+```
+
+Sau khi cài, mở Hermes bằng profile đã chọn, ví dụ:
 
 ```bash
 hermes --profile marketing -s marketing-orchestration
@@ -94,12 +105,13 @@ hermes --profile marketing -s marketing-orchestration
 
 Script sẽ tự động:
 
+- hỏi tên profile và `EXA_API_KEY` trong terminal
 - tạo profile nếu chưa có
 - copy `SOUL.md` và `AGENTS.md`
 - copy `memory/MEMORY.md` và `memory/USER.md`
 - copy toàn bộ marketing skills
 - bật toolset `web` nếu Hermes CLI khả dụng
-- ghi `EXA_API_KEY` vào profile `.env` nếu bạn truyền biến môi trường này
+- ghi `EXA_API_KEY` vào profile `.env` nếu bạn nhập key hoặc truyền biến môi trường này
 
 ## 4. Hướng dẫn cài thủ công
 
