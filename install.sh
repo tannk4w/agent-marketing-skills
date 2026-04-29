@@ -28,8 +28,13 @@ need_cmd() {
 }
 
 prompt() {
-  printf '%s' "$1" >&2
-  IFS= read -r "$2" || true
+  if { exec 3<>/dev/tty; } 2>/dev/null; then
+    printf '%s' "$1" >&3
+    IFS= read -r "$2" <&3 || printf -v "$2" ''
+    exec 3>&-
+  else
+    printf -v "$2" ''
+  fi
 }
 
 usage() {
