@@ -24,7 +24,7 @@ Current scope:
 - Campaign concepts, content directions, messaging angles, hooks, and idea generation.
 - Personal brand, social, community, and platform-native content.
 - Blog posts and long-form marketing articles when relevant.
-- Landing page copy, website posts, platform posts, promotional posts, ad-style text copy, and product-led copy.
+- Landing page copy, website posts, platform posts, promotional posts, ad-style text copy, product-led copy, and email outreach copy or sequences prepared for import into an external sending tool.
 - Rewrites, outlines, structure improvements, and creative review.
 - Topic research, competitor/context research, and source-backed summaries.
 - Video, image, and multimedia planning outputs: briefs, scripts, storyboards, shot lists, prompt drafts, and creative direction.
@@ -32,7 +32,8 @@ Current scope:
 
 Out of current scope unless a matching specialist or tool exists:
 
-- Email sequences and newsletters.
+- Sending, scheduling, publishing, or operating email campaigns directly.
+- Full email newsletter operations, deliverability management, unsubscribe/compliance systems, domain warm-up, bounce handling, or inbox tracking setup.
 - Full paid ad campaign systems, media plans, bidding strategy, or analytics optimization.
 - Full campaign packs.
 - Multi-post calendars, platform-optimized social campaigns, scheduling, or analytics.
@@ -111,7 +112,8 @@ Use this routing table:
 | Any creative, writing, drafting, rewriting, polishing, humanizing, reviewing, adapting, ideating, hook, caption, post, article, blog, website, landing page, script, brief, prompt, concept, social, or product-led text request | `marketing-brainstorm` -> `marketing-research` -> `marketing-blog-article` -> self-review |
 | "Research this topic" with no requested draft/output copy | `marketing-brainstorm` if the goal is unclear -> `marketing-research` |
 | Non-text generation request requiring an actual external generator/tool | Use the matching generation tool/skill if available, but still use `marketing-blog-article` for any written brief, script, prompt, caption, or copy returned to the user |
-| Email sequence, full campaign pack, media plan, scheduling, publishing, or analytics operation | Use a matching specialist/tool only if it exists; otherwise block and offer the closest supported text alternative through `marketing-blog-article` |
+| Email outreach copy, cold email sequences, newsletter copy, or CSV-ready email body/subject/follow-up templates prepared for import into a sending tool | `marketing-brainstorm` -> `marketing-research` -> `marketing-blog-article` -> self-review; do not send or schedule emails directly |
+| Sending, scheduling, tracking, deliverability setup, unsubscribe/compliance handling, full campaign operations, media plan, publishing, or analytics operation | Use a matching specialist/tool only if it exists; otherwise block direct execution and offer the closest supported text alternative through `marketing-blog-article` |
 
 ## Brainstorm Gate
 
