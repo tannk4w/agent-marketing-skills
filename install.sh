@@ -4,9 +4,8 @@ set -euo pipefail
 REPO_OWNER="tannk4w"
 REPO_NAME="agent-marketing-skills"
 BRANCH="main"
-PROFILE="${PROFILE:-marketing}"
+DEFAULT_PROFILE="${PROFILE:-marketing}"
 HERMES_HOME="${HERMES_HOME:-$HOME/.hermes}"
-PROFILE_DIR="$HERMES_HOME/profiles/$PROFILE"
 REPO_ARCHIVE_URL="https://github.com/${REPO_OWNER}/${REPO_NAME}/archive/refs/heads/${BRANCH}.tar.gz"
 TMP_DIR=""
 
@@ -28,6 +27,11 @@ need_cmd() {
   }
 }
 
+prompt() {
+  printf '%s' "$1" >&2
+  IFS= read -r "$2" || true
+}
+
 usage() {
   cat <<'EOF'
 Install agent-marketing skills into a Hermes profile.
@@ -35,16 +39,17 @@ Install agent-marketing skills into a Hermes profile.
 Usage:
   curl -fsSL https://raw.githubusercontent.com/tannk4w/agent-marketing-skills/main/install.sh | bash
 
+The installer will ask for:
+  PROFILE                Hermes profile name to install into. Default: marketing
+  EXA_API_KEY            Optional. Press Enter to skip writing it to the profile .env
+
 Options via environment variables:
-  PROFILE=marketing        Hermes profile name to install into. Default: marketing
-  EXA_API_KEY=...          Optional. Appends/updates EXA_API_KEY in the profile .env
-  HERMES_HOME=~/.hermes    Optional. Override Hermes home directory
+  PROFILE=marketing      Default profile name shown in the prompt
+  EXA_API_KEY=...        Default EXA_API_KEY shown in the prompt
+  HERMES_HOME=~/.hermes  Optional. Override Hermes home directory
 
 Examples:
-  PROFILE=content curl -fsSL https://raw.githubusercontent.com/tannk4w/agent-marketing-skills/main/install.sh | bash
-
-  curl -fsSL https://raw.githubusercontent.com/tannk4w/agent-marketing-skills/main/install.sh | \
-    PROFILE=marketing EXA_API_KEY=your_key_here bash
+  curl -fsSL https://raw.githubusercontent.com/tannk4w/agent-marketing-skills/main/install.sh | bash
 EOF
 }
 
@@ -55,6 +60,10 @@ fi
 
 need_cmd curl
 need_cmd tar
+
+prompt "Hermes profile name [$DEFAULT_PROFILE]: " PROFILE_INPUT
+PROFILE="${PROFILE_INPUT:-$DEFAULT_PROFILE}"
+PROFILE_DIR="$HERMES_HOME/profiles/$PROFILE"
 
 log "Installing into Hermes profile: $PROFILE"
 
@@ -97,6 +106,9 @@ for skill in marketing-orchestration marketing-brainstorm marketing-research mar
   rm -rf "$PROFILE_DIR/skills/$skill"
   cp -a "$SRC_DIR/skills/$skill" "$PROFILE_DIR/skills/$skill"
 done
+
+prompt "EXA_API_KEY (optional, press Enter to skip): " EXA_API_KEY_INPUT
+EXA_API_KEY="${EXA_API_KEY_INPUT:-${EXA_API_KEY:-}}"
 
 if [ -n "${EXA_API_KEY:-}" ]; then
   ENV_FILE="$PROFILE_DIR/.env"

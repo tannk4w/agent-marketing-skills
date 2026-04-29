@@ -76,8 +76,11 @@ Do not reject a task because it is not literally a blog or article. If the outpu
 7. For social-style posts or Facebook-ready adaptations, add light emoji/icons when they improve scannability and match the brand tone.
 8. Add a CTA aligned with the user's goal.
 9. Review factual claims against provided research, user context, or source notes.
-10. If the article is for a blog/website and uses reference links, include a "References"/"Tài liệu tham khảo" section with the source URLs, unless the user asks to keep sources only in notes.
-11. Return a clean draft plus concise notes that make assumptions and next steps clear.
+10. Decide reference display before returning:
+   - Include a `References` / `Tài liệu tham khảo` section when checked sources materially inform the final answer, support factual/trend/market/statistical claims, or the output is a blog/website/article/guide/report/SEO content, public-facing educational content, thought-leadership piece, comparison, or hiring/career advice based on external sources.
+   - Use Notes-only source disclosure for short social posts, captions, hooks, rewrites, Slack/internal updates, scripts, briefs, or creative concepts where a full references section would hurt the format; still include `Research basis` and `Reference URLs used` when checked sources shaped the content.
+   - Omit references entirely when no external/user-provided sources were checked, the task is purely stylistic/formatting, or the final content is based only on user-provided context/memory/general reasoning.
+11. Return a clean draft plus concise notes that make assumptions, source use, and next steps clear.
 
 ## Platform-Specific Text Copy
 
@@ -197,14 +200,39 @@ When the output is suitable for social platforms such as Facebook, LinkedIn, com
 
 ## Reference URL Handling
 
-For blog/website drafts that rely on reference links:
+Use references based on whether sources were actually checked and whether showing them fits the final format.
 
-- Include a `References` / `Tài liệu tham khảo` section in the final output unless the user explicitly asks not to show sources.
-- For publish-ready blog/website drafts, put source URLs in the `References` / `Tài liệu tham khảo` section. For outlines, short rewrites, or internal notes, source URLs may stay in `Notes` if that is more appropriate.
-- Prefer this format: `[Source title or name](URL) — supports: [claim/topic]`.
+### Include a References / Tài liệu tham khảo section when:
+
+- Checked external or user-provided sources materially informed the final answer.
+- The draft uses sources to support factual, trend, market, statistical, competitor, legal/financial/medical, hiring/career/interview, or technical claims.
+- The output is a blog, website article, SEO article, guide, report, public educational content, thought-leadership piece, comparison, career/interview advice, or source-backed explainer.
+- The user explicitly asks for sources, citations, references, research basis, or URLs.
+
+### Use Notes-only source disclosure when:
+
+- The output is a short social post, caption, hook set, rewrite, Slack/internal update, script, brief, creative concept, or prompt where a full references section would disrupt the format.
+- Checked sources shaped the content, but the final copy should stay clean. In this case, add a concise `Notes` line such as `Reference URLs used: ...` or `Research basis: ...` after the copy.
+
+### Omit references when:
+
+- No external/user-provided sources were checked.
+- The task is purely stylistic, formatting-only, grammar polish, tone adjustment, or summarizing only user-provided text without needing outside support.
+- The final content is based only on user-provided context, memory, or general reasoning and does not make source-sensitive claims.
+
+Reference rules:
+
+Reference selection rules:
+
+- Include only references that materially informed or support the final answer; do not list every page opened during research.
+- For practical educational outputs such as “10 IT interview questions and answers”, include references if external research was used to shape the advice, definitions, role expectations, or technical/career claims. A compact `Tài liệu tham khảo` section at the end is appropriate.
+- For purely creative copy, tone rewrites, grammar fixes, headline variants, or formatting-only edits, do not add references unless the user explicitly asks.
+- When references are included, keep them concise and useful: normally 2-5 strong sources, with source name/title, URL, and what it supports.
+
+- Prefer this format when showing references: `[Source title or name](URL) — supports: [claim/topic]`.
 - Do not include unchecked, inaccessible, or unverified URLs as supporting sources. If a user-provided URL could not be checked or extracted, mention it in `Notes` instead.
-- Do not create a references section when no source URLs were provided or checked.
-- Do not create fake bibliographies or generic source lists.
+- Do not create fake bibliographies, generic source lists, or references from memory.
+- Do not silently omit checked sources that materially shaped a source-backed output; show them either in References or Notes depending on format.
 
 ## Output Format
 
@@ -245,6 +273,7 @@ For shorter rewrites or improvements, return only the useful parts. Do not bloat
 - Do not over-optimize keywords at the expense of readability.
 - Do not treat this skill as a substitute for a dedicated SEO audit when the user asks to evaluate an existing page.
 - Do not refuse or route away a text-first creative/writing output just because it is not a blog/article; adapt the workflow and write for the requested format.
-- If a blog/website draft is based on reference links, include the reference URLs in the output unless the user explicitly asks not to.
-- Do not create a References/Tài liệu tham khảo section when no source URLs were provided or checked.
+- If checked sources materially informed a source-backed blog/website/article/guide/report/public educational output, include a References/Tài liệu tham khảo section unless the user explicitly asks not to.
+- For short/social/internal formats that used checked sources, disclose source use in Notes instead of forcing a full References section.
+- Do not create a References/Tài liệu tham khảo section when no source URLs were provided or checked, when the task is purely stylistic, or when the output is based only on user-provided context/general reasoning.
 - Do not default to Vietnamese from the user's chat language. Write in the language explicitly confirmed in the brief.

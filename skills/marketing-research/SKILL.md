@@ -70,6 +70,30 @@ Follow this order:
    - Combine reference findings and web findings into one research summary for orchestration.
    - Highlight conflicts, weak evidence, outdated sources, and claims that should be softened.
 
+
+## Reference Display Decision Rules
+
+Research should decide whether sources must be visible in the user's final deliverable. Do not treat every researched output the same.
+
+Add visible references when:
+
+- The final deliverable teaches, advises, or explains a factual topic for public use, such as career guidance, interview Q&A, hiring advice, industry explainers, educational guides, reports, comparisons, or SEO/blog content.
+- The draft relies on external facts, definitions, standards, market context, trend claims, salary/career claims, technical claims, statistics, legal/financial/medical claims, or anything a reader may reasonably want to verify.
+- The user explicitly asks for references, citations, research basis, URLs, or source-backed content.
+
+Use notes-only references when:
+
+- The source research shaped a short/social/internal/creative output but a full references section would make the format awkward.
+- The final answer needs to stay clean, but the user should still know which URLs informed it.
+
+Omit references when:
+
+- No source was actually checked.
+- The task is purely stylistic: grammar, tone, shortening, formatting, headline variants, hook variations, or rewriting user-provided text without adding source-sensitive claims.
+- The answer is based only on the user's provided context, reusable memory, or general reasoning and does not present verifiable factual claims.
+
+Choose sources selectively. Include only sources that materially support the final content, not every search result opened. Prefer 2-5 strong references for standard articles/guides; use more only for reports, comparisons, or broad research summaries.
+
 ## Exa Usage Rules (Enforced)
 
 When Exa is available:
@@ -112,7 +136,12 @@ Do not expose API keys or raw tool configuration in the final output.
    - Reasonable interpretations.
    - Assumptions.
    - Unsupported or risky claims.
-8. Return a compact research handoff to orchestration.
+8. Recommend how sources should be displayed in the final output:
+   - `References section` for source-backed blog/website/article/guide/report/public educational content, career/hiring/interview guidance, comparisons, or factual/trend/statistical/technical claims.
+   - `Notes only` for short/social/internal/creative formats where references would disrupt the final copy but checked sources shaped the content.
+   - `No references needed` only when no external/user-provided sources were checked, the task was purely stylistic, or research produced no usable source-backed findings.
+   - List only the strongest material sources that should be shown; do not dump every URL checked.
+9. Return a compact research handoff to orchestration.
 
 ## Reference Materials Handling
 
@@ -167,6 +196,8 @@ Return this structure by default:
 Research basis: [User references only / Web only / User references + Web]
 Confidence: [High/Medium/Low with short reason]
 Recommended content use: [how the next writer should use the evidence]
+Reference display recommendation: [References section / Notes only / No references needed, with reason]
+Suggested visible references: [2-5 strongest titles + URLs only when references/notes should be shown]
 ```
 
 Keep the output compact. The goal is to help orchestration/writing, not produce a full report unless the user asked for one.

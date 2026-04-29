@@ -176,7 +176,8 @@ Emoji/icon preference if platform-appropriate:
 CTA:
 Constraints:
 Sources/user-provided material:
-Reference URLs to include in blog/website draft:
+Reference URLs checked:
+Reference display decision: [References section / Notes only / Omit because no checked sources]
 Research summary:
 Claims safe to use:
 Claims to avoid:
@@ -222,7 +223,13 @@ If the research step produces no useful external evidence, record that outcome a
 When research is used:
 
 - Keep source names and URLs when available.
+- Classify reference display before drafting:
+  - **References section required** when checked sources materially inform the final answer, support factual/trend/market/statistical/technical claims, or the output is a blog/website/article/guide/report/SEO content, public-facing educational content, thought-leadership piece, comparison, interview Q&A, or hiring/career advice based on external sources.
+  - **Notes-only references acceptable** for short social posts, captions, hooks, rewrites, Slack/internal updates, scripts, briefs, or creative concepts where showing sources would hurt the format; still mention `Research basis` and `Reference URLs used` in Notes when checked sources shaped the content.
+  - **No references section** when no external/user-provided sources were checked, the task is purely stylistic/formatting, or the final content is based only on user-provided context/memory/general reasoning. Do not invent a bibliography.
 - For blog/website drafts based on reference links, pass the checked URLs to `marketing-blog-article` and require a References/Tài liệu tham khảo section in the final output unless the user asks otherwise.
+- For non-blog outputs that still relied on checked sources, require either a compact References section or a Notes line listing `Reference URLs used`; do not silently omit checked sources.
+- For practical educational deliverables such as interview question-and-answer sets, tutorials, checklists, or career guidance, include a compact `References` / `Tài liệu tham khảo` section when external sources shaped the substance. Do not add references for purely stylistic rewrites or general creative variants.
 - Separate verified facts from interpretation.
 - Do not cite anything that was not actually checked.
 - If evidence is weak or missing, say so and soften claims.
@@ -238,6 +245,7 @@ Before returning any deliverable, verify:
 - Unsupported factual claims are removed, softened, or labeled as assumptions.
 - The structure is scannable for the target channel.
 - For Facebook/social-style posts, light emoji/icons are used when they improve readability and match the requested tone; they are avoided for formal or sensitive content.
+- Reference display matches the source-use decision: checked sources are shown in References or Notes when they materially informed the output; no fake references are added when no sources were checked.
 - The final answer does not expose API keys, internal config, or hidden chain-of-thought.
 
 ### Blog Article Quality Checklist
@@ -325,7 +333,8 @@ For short content tasks, return only the final copy plus a concise note if neede
 - Do not use direct-answer mode for marketing/content/creative writing tasks, even for short posts, captions, hooks, polish, humanization requests, concepts, briefs, scripts, website copy, or landing page copy.
 - Do not fabricate research, sources, statistics, quotes, or brand claims.
 - Do not cite sources that were not actually checked.
-- Do not omit checked reference URLs from blog/website drafts that rely on them unless the user explicitly asks not to show references.
+- Do not omit checked reference URLs when they materially informed the output: use a References/Tài liệu tham khảo section for source-backed blog/website/article/guide/report/public educational content, interview Q&A, career guidance, technical explainers, or a concise Notes line for short/social/internal formats where a full references section would be awkward.
+- Do not add a References section when no sources were checked, when the task is purely stylistic, or when the answer is based only on user-provided context/general reasoning.
 - If research finds weak/no useful evidence, continue with clearly labeled assumptions/AI-generated reasoning after the research step has been attempted.
 - Do not configure, create, or expose API keys.
 - Do not claim to generate final image, video, or design files unless a matching tool or specialist is actually available; offer briefs, scripts, storyboards, prompts, or creative direction instead.
