@@ -8,6 +8,14 @@ DEFAULT_PROFILE="${PROFILE:-marketing}"
 HERMES_HOME="${HERMES_HOME:-$HOME/.hermes}"
 REPO_ARCHIVE_URL="https://github.com/${REPO_OWNER}/${REPO_NAME}/archive/refs/heads/${BRANCH}.tar.gz"
 TMP_DIR=""
+SKILLS=(
+  marketing-orchestration
+  marketing-brainstorm
+  marketing-research
+  marketing-blog-article
+  marketing-slack
+  nano-banana-thumbnail
+)
 
 log() { printf '\033[1;32m[agent-marketing]\033[0m %s\n' "$*"; }
 warn() { printf '\033[1;33m[agent-marketing]\033[0m %s\n' "$*"; }
@@ -184,7 +192,7 @@ if [ "$MODE" = "update" ]; then
   # Skills
   confirm "Update skills" REPLACE_SKILLS "y"
   if [ "$REPLACE_SKILLS" = "y" ]; then
-    for skill in marketing-orchestration marketing-brainstorm marketing-research marketing-blog-article marketing-slack; do
+    for skill in "${SKILLS[@]}"; do
       rm -rf "$PROFILE_DIR/skills/$skill"
       cp -a "$SRC_DIR/skills/$skill" "$PROFILE_DIR/skills/$skill"
     done
@@ -204,8 +212,8 @@ else
   cp "$SRC_DIR/memory/MEMORY.md" "$PROFILE_DIR/memories/MEMORY.md"
   cp "$SRC_DIR/memory/USER.md" "$PROFILE_DIR/memories/USER.md"
 
-  log "Copying marketing skills..."
-  for skill in marketing-orchestration marketing-brainstorm marketing-research marketing-blog-article marketing-slack; do
+  log "Copying skills..."
+  for skill in "${SKILLS[@]}"; do
     rm -rf "$PROFILE_DIR/skills/$skill"
     cp -a "$SRC_DIR/skills/$skill" "$PROFILE_DIR/skills/$skill"
   done

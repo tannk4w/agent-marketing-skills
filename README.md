@@ -12,6 +12,7 @@ Bộ skill này phù hợp cho:
 - rewrite, polish, humanize, review nội dung
 - research thị trường/đối thủ/ngữ cảnh trước khi viết
 - viết thông báo Slack/internal update ngắn gọn
+- viết prompt thumbnail/cover image CTR cao cho Nano Banana Pro
 
 Workflow chính:
 
@@ -30,6 +31,7 @@ Trong đó:
 - `marketing-research`: research bối cảnh, nguồn, claim an toàn, claim cần tránh.
 - `marketing-blog-article`: viết nội dung cuối cùng cho blog, article, website, social, landing copy, product-led copy, v.v.
 - `marketing-slack`: hỗ trợ viết thông báo Slack/internal update.
+- `nano-banana-thumbnail`: viết prompt thumbnail/cover image có bố cục, text overlay và bối cảnh kể chuyện cho Nano Banana Pro.
 
 Nguyên tắc quan trọng:
 
@@ -59,8 +61,11 @@ agent-marketing/
     │   └── SKILL.md
     ├── marketing-blog-article/
     │   └── SKILL.md
-    └── marketing-slack/
-        └── SKILL.md
+    ├── marketing-slack/
+    │   └── SKILL.md
+    └── nano-banana-thumbnail/
+        ├── SKILL.md
+        └── modules/
 ```
 
 ## 3. Cài nhanh bằng install.sh
@@ -138,7 +143,7 @@ Script sẽ tự động:
 - tạo profile nếu chưa có
 - copy `SOUL.md` và `AGENTS.md`
 - copy `memory/MEMORY.md` và `memory/USER.md`
-- copy toàn bộ marketing skills
+- copy toàn bộ marketing skills và `nano-banana-thumbnail`
 - bật toolset `web` nếu Hermes CLI khả dụng
 - ghi `EXA_API_KEY` vào profile `.env` nếu bạn nhập key hoặc truyền biến môi trường này
 
@@ -289,6 +294,9 @@ cp -a /home/tannk/agent-marketing/skills/marketing-blog-article \
 
 cp -a /home/tannk/agent-marketing/skills/marketing-slack \
   /home/tannk/.hermes/profiles/marketing/skills/
+
+cp -a /home/tannk/agent-marketing/skills/nano-banana-thumbnail \
+  /home/tannk/.hermes/profiles/marketing/skills/
 ```
 
 Kiểm tra skill đã được nhận:
@@ -329,7 +337,7 @@ Chạy kiểm tra cấu trúc skill:
 python3 - <<'PY'
 import pathlib, re, yaml
 base = pathlib.Path('/home/tannk/.hermes/profiles/marketing/skills')
-for p in base.glob('marketing-*/SKILL.md'):
+for p in base.glob('*/SKILL.md'):
     content = p.read_text()
     assert content.startswith('---'), p
     m = re.search(r'\n---\s*\n', content[3:])
