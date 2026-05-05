@@ -65,6 +65,8 @@ agent-marketing/
 
 ## 3. Cài nhanh bằng install.sh
 
+### Cài đặt lần đầu
+
 Có thể cài nhanh toàn bộ package vào một Hermes profile bằng lệnh:
 
 ```bash
@@ -95,6 +97,33 @@ Vẫn có thể dùng biến môi trường nếu muốn đặt giá trị mặc
 ```bash
 PROFILE=content EXA_API_KEY=your_exa_api_key_here \
   bash -c "$(curl -fsSL https://raw.githubusercontent.com/tannk4w/agent-marketing-skills/main/install.sh)"
+```
+
+### Cập nhật về sau
+
+Để cập nhật skill, SOUL.md, hoặc AGENTS.md (mà không ảnh hưởng đến memory files), dùng flag `--update`:
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/tannk4w/agent-marketing-skills/main/install.sh | bash -s -- --update
+```
+
+Script sẽ hỏi từng thành phần trước khi replace:
+
+```text
+[agent-marketing] --- Update Mode ---
+[agent-marketing] Note: Memory files will be kept as-is
+Replace SOUL.md? [Y/n]: y
+Replace AGENTS.md? [Y/n]: y
+Update skills? [Y/n]: y
+[agent-marketing] --- Update complete ---
+```
+
+**Lưu ý:** Memory files (MEMORY.md, USER.md) luôn được giữ nguyên trong chế độ update.
+
+Có thể dùng biến môi trường để chạy non-interactive:
+
+```bash
+PROFILE=marketing curl ... | bash -s -- --update
 ```
 
 Sau khi cài, mở Hermes bằng profile đã chọn, ví dụ:

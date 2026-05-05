@@ -37,12 +37,38 @@ prompt() {
   fi
 }
 
+# Prompt with default yes (for update mode)
+# Returns "y" or "n" in the variable name provided
+confirm() {
+  local prompt_text="$1"
+  local var_name="$2"
+  local default="${3:-y}"
+
+  if { exec 3<>/dev/tty; } 2>/dev/null; then
+    printf '%s [%s]: ' "$prompt_text" "$default" >&3
+    IFS= read -r answer <&3 || answer="$default"
+    exec 3>&-
+  else
+    answer="$default"
+  fi
+
+  # Normalize answer
+  case "${answer:-$default}" in
+    [yY]|[yY][eE][sS]) printf -v "$var_name" 'y';;
+    *) printf -v "$var_name" 'n';;
+  esac
+}
+
 usage() {
   cat <<'EOF'
 Install agent-marketing skills into a Hermes profile.
 
 Usage:
+  # Fresh install (first time)
   curl -fsSL https://raw.githubusercontent.com/tannk4w/agent-marketing-skills/main/install.sh | bash
+
+  # Update existing installation (asks before replacing each component)
+  curl -fsSL https://raw.githubusercontent.com/tannk4w/agent-marketing-skills/main/install.sh | bash -s -- --update
 
 The installer will ask for:
   PROFILE                Hermes profile name to install into. Default: marketing
@@ -53,24 +79,57 @@ Options via environment variables:
   EXA_API_KEY=...        Default EXA_API_KEY shown in the prompt
   HERMES_HOME=~/.hermes  Optional. Override Hermes home directory
 
+Update mode (--update):
+  When using --update, you will be asked individually whether to replace:
+    - SOUL.md        (default: replace)
+    - AGENTS.md      (default: replace)
+    - Skills         (default: replace)
+  Note: Memory files (MEMORY.md, USER.md) are NOT updated - always kept as-is
+
 Examples:
+  # Fresh install
   curl -fsSL https://raw.githubusercontent.com/tannk4w/agent-marketing-skills/main/install.sh | bash
+
+  # Update with PROFILE env var (non-interactive friendly)
+  PROFILE=marketing curl -fsSL https://raw.githubusercontent.com/tannk4w/agent-marketing-skills/main/install.sh | bash -s -- --update
+
+  # Update (shorthand)
+  curl -fsSL https://raw.githubusercontent.com/tannk4w/agent-marketing-skills/main/install.sh | bash -s -- -u
 EOF
 }
+
+MODE="install"
 
 if [ "${1:-}" = "--help" ] || [ "${1:-}" = "-h" ]; then
   usage
   exit 0
+elif [ "${1:-}" = "--update" ] || [ "${1:-}" = "-u" ]; then
+  MODE="update"
 fi
 
 need_cmd curl
 need_cmd tar
 
-prompt "Hermes profile name [$DEFAULT_PROFILE]: " PROFILE_INPUT
-PROFILE="${PROFILE_INPUT:-$DEFAULT_PROFILE}"
-PROFILE_DIR="$HERMES_HOME/profiles/$PROFILE"
+if [ "$MODE" = "update" ]; then
+  # Update mode: use default or env var, don't prompt
+  PROFILE="${PROFILE:-$DEFAULT_PROFILE}"
+  PROFILE_DIR="$HERMES_HOME/profiles/$PROFILE"
 
-log "Installing into Hermes profile: $PROFILE"
+  if [ ! -d "$PROFILE_DIR" ]; then
+    err "Profile '$PROFILE' does not exist. Run without --update first."
+    exit 1
+  fi
+
+  log "Update mode for Hermes profile: $PROFILE"
+  log "Profile directory: $PROFILE_DIR"
+else
+  # Install mode: prompt for profile name
+  prompt "Hermes profile name [$DEFAULT_PROFILE]: " PROFILE_INPUT
+  PROFILE="${PROFILE_INPUT:-$DEFAULT_PROFILE}"
+  PROFILE_DIR="$HERMES_HOME/profiles/$PROFILE"
+
+  log "Installing into Hermes profile: $PROFILE"
+fi
 
 if command -v hermes >/dev/null 2>&1; then
   if hermes profile show "$PROFILE" >/dev/null 2>&1; then
@@ -98,19 +157,59 @@ if [ ! -d "$SRC_DIR" ]; then
   exit 1
 fi
 
-log "Copying SOUL.md and AGENTS.md..."
-cp "$SRC_DIR/SOUL.md" "$PROFILE_DIR/SOUL.md"
-cp "$SRC_DIR/AGENTS.md" "$PROFILE_DIR/AGENTS.md"
+if [ "$MODE" = "update" ]; then
+  # Update mode: ask before replacing SOUL.md, AGENTS.md, and skills
+  # Memory files are NOT updated (kept as-is)
+  log "--- Update Mode ---"
+  log "Note: Memory files will be kept as-is"
 
-log "Copying memory files..."
-cp "$SRC_DIR/memory/MEMORY.md" "$PROFILE_DIR/memories/MEMORY.md"
-cp "$SRC_DIR/memory/USER.md" "$PROFILE_DIR/memories/USER.md"
+  # SOUL.md
+  confirm "Replace SOUL.md" REPLACE_SOUL "y"
+  if [ "$REPLACE_SOUL" = "y" ]; then
+    cp "$SRC_DIR/SOUL.md" "$PROFILE_DIR/SOUL.md"
+    log "Updated SOUL.md"
+  else
+    log "Keeping existing SOUL.md"
+  fi
 
-log "Copying marketing skills..."
-for skill in marketing-orchestration marketing-brainstorm marketing-research marketing-blog-article marketing-slack; do
-  rm -rf "$PROFILE_DIR/skills/$skill"
-  cp -a "$SRC_DIR/skills/$skill" "$PROFILE_DIR/skills/$skill"
-done
+  # AGENTS.md
+  confirm "Replace AGENTS.md" REPLACE_AGENTS "y"
+  if [ "$REPLACE_AGENTS" = "y" ]; then
+    cp "$SRC_DIR/AGENTS.md" "$PROFILE_DIR/AGENTS.md"
+    log "Updated AGENTS.md"
+  else
+    log "Keeping existing AGENTS.md"
+  fi
+
+  # Skills
+  confirm "Update skills" REPLACE_SKILLS "y"
+  if [ "$REPLACE_SKILLS" = "y" ]; then
+    for skill in marketing-orchestration marketing-brainstorm marketing-research marketing-blog-article marketing-slack; do
+      rm -rf "$PROFILE_DIR/skills/$skill"
+      cp -a "$SRC_DIR/skills/$skill" "$PROFILE_DIR/skills/$skill"
+    done
+    log "Updated skills"
+  else
+    log "Skipped skills"
+  fi
+
+  log "--- Update complete ---"
+else
+  # Install mode: copy all files directly
+  log "Copying SOUL.md and AGENTS.md..."
+  cp "$SRC_DIR/SOUL.md" "$PROFILE_DIR/SOUL.md"
+  cp "$SRC_DIR/AGENTS.md" "$PROFILE_DIR/AGENTS.md"
+
+  log "Copying memory files..."
+  cp "$SRC_DIR/memory/MEMORY.md" "$PROFILE_DIR/memories/MEMORY.md"
+  cp "$SRC_DIR/memory/USER.md" "$PROFILE_DIR/memories/USER.md"
+
+  log "Copying marketing skills..."
+  for skill in marketing-orchestration marketing-brainstorm marketing-research marketing-blog-article marketing-slack; do
+    rm -rf "$PROFILE_DIR/skills/$skill"
+    cp -a "$SRC_DIR/skills/$skill" "$PROFILE_DIR/skills/$skill"
+  done
+fi
 
 prompt "EXA_API_KEY (optional, press Enter to skip): " EXA_API_KEY_INPUT
 EXA_API_KEY="${EXA_API_KEY_INPUT:-${EXA_API_KEY:-}}"
