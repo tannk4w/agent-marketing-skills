@@ -82,6 +82,52 @@ Constraints: No extra hands or fingers; avoid plastic skin texture; no additiona
 
 ---
 
+## Example 2B — Thumbnail / Blog Cover: Data Analyst Recruitment Campaign (Premium Whitespace)
+
+A premium Vietnamese tech recruitment campaign thumbnail featuring a young Vietnamese male Data Analyst working in a modern analytics office workspace.
+
+Subject: A professional Vietnamese man in his late 20s wearing a dark navy office shirt and black rectangular glasses, seated at a clean wooden desk while thoughtfully analyzing business dashboards. Natural candid posture with one hand touching chin, focused intelligent expression, authentic Asian skin texture, realistic facial asymmetry, non-stock-photo appearance.
+
+Foreground: A realistic analytics workstation setup including dual-monitor business dashboards, KPI graphs, analytics reports, open laptop with believable dashboard UI, handwritten notes, coffee cup, office accessories, printed charts, and stacked programming books. Workspace should feel realistic and naturally used.
+
+Background: Bright modern fintech office with soft daylight entering through large windows, blurred whiteboards with workflow diagrams, glass office partitions, sticky notes, and realistic startup-tech atmosphere.
+
+Composition: High-end editorial recruitment advertisement layout with strong asymmetric balance. Entire workspace and subject positioned on the right third of frame. Large clean white negative space on left side reserved for typography. Strong intentional whitespace usage. Clean premium banking-tech advertisement composition. Avoid centered layout and avoid Canva-template appearance.
+
+IMPORTANT TYPOGRAPHY SCALE: Typography must appear noticeably smaller and more premium. Text should occupy only around 28-32% of total image width. Maintain large breathing room around all text blocks. Headline should feel elegant and restrained, not aggressive. Do not let typography dominate the composition. Spacing between headline lines should be generous. Maintain luxury editorial proportions similar to premium fintech posters.
+
+Lighting: Luxury commercial office lighting with cinematic soft contrast, realistic daylight reflections, subtle shadows, premium workspace atmosphere, and believable monitor glow.
+
+Camera: Shot on Canon EOS R5, 50mm lens, f/2.8, medium-wide framing, shallow depth of field, ultra realistic commercial photography.
+
+Style: Premium Vietnamese fintech recruitment campaign aesthetic, modern editorial thumbnail design, authentic Southeast Asian office realism, clean blue-and-white corporate palette, luxury commercial advertising quality.
+
+Typography:
+  "BỘ CÂU HỎI" in medium-sized white uppercase sans-serif inside a rounded dark navy banner with generous padding;
+
+  "PHỎNG VẤN DATA ANALYST" in bold condensed navy-blue sans-serif typography with moderate scale, elegant spacing, and restrained editorial hierarchy;
+
+  "2026" in balanced warm gold typography, smaller and less dominant;
+
+  "(KÈM CÂU TRẢ LỜI)" inside a smaller rounded dark navy capsule;
+
+  below headline: three minimalist thin-line icons with smaller labels: "Câu hỏi theo từng nhóm" / "Gợi ý trả lời chi tiết, dễ hiểu" / "Mẹo trả lời ghi điểm với nhà tuyển dụng";
+
+  bottom banner: "Chuẩn bị kỹ - Tự tin trả lời - Nắm chắc cơ hội";
+
+  icons and supporting text should remain visually secondary and lightweight;
+
+  render exact text only.
+
+Transition: Subtle natural separation between text area and workspace scene without strong white blur overlay.
+
+Constraints: Avoid oversized typography; avoid cramped layout; avoid thick heavy text blocks; no AI-looking skin; no fake dashboards; no random unreadable text; no stock-photo appearance; maintain clean editorial whitespace and premium commercial balance; no watermarks.
+
+---
+[Settings: Type = Thumbnail / Blog Cover | Aspect ratio = 16:9]
+
+---
+
 ## Example 3 — Thumbnail: Finance / Warning (Minimal Impact + Dramatic)
 
 A Vietnamese woman in her 30s, furrowed brows, worried expression, leaning slightly forward toward camera, one hand raised palm-out in a "stop" gesture, other hand holding a credit card.

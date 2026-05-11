@@ -574,3 +574,71 @@ Text:
 | Nền mờ nổi text | `shallow depth of field f/1.8, blurred background` |
 | Full bleed text | `text as primary element, minimal/no subject, typography-focused` |
 | Vertical safe zones | `text in top 10-25% and bottom 70-85%, center clear for subject` |
+
+---
+
+## Variant 10 — Premium Recruitment Editorial (Whitespace + Restrained Type)
+
+> Dùng cho **ảnh tuyển dụng, bộ câu hỏi phỏng vấn, blog cover premium, fintech/tech/corporate campaign**.
+> Mục tiêu: ảnh trông như quảng cáo editorial cao cấp, không giống Canva template hoặc thumbnail chữ quá lớn.
+
+### Layout Principles
+```
+Composition: High-end editorial recruitment advertisement layout with strong
+asymmetric balance. Subject/workspace positioned on the right third or right
+55-60% of frame. Left 40-45% remains clean negative space reserved for typography.
+Use intentional whitespace as a premium design element. Avoid centered layout,
+avoid cramped text, avoid heavy template-like blocks.
+```
+
+### Typography Scale Rule
+```
+IMPORTANT TYPOGRAPHY SCALE:
+Typography must appear noticeably smaller and more premium.
+Text group should occupy only around 28-32% of total image width.
+Maintain large breathing room around all text blocks.
+Headline should feel elegant and restrained, not aggressive.
+Do not let typography dominate the composition.
+Spacing between headline lines should be generous.
+Supporting icons and labels must remain visually secondary and lightweight.
+```
+
+### Text Template
+```
+Text:
+  "[LABEL]" in medium-sized white uppercase sans-serif inside a rounded
+  dark [primary color] banner with generous padding, upper-left;
+
+  "[HEADLINE]" in font-weight 800-900 condensed [primary/accent color]
+  sans-serif typography with moderate scale, elegant spacing, restrained
+  editorial hierarchy, placed below label with generous line spacing;
+
+  "[YEAR]" in balanced warm [accent] typography, smaller and less dominant,
+  placed near headline as a supporting anchor, not as the largest element;
+
+  "[DETAIL]" inside a smaller rounded dark [primary color] capsule,
+  secondary scale, below headline;
+
+  three minimalist thin-line icons with smaller labels below headline,
+  lightweight and secondary;
+
+  bottom banner: "[TAGLINE]" in font-weight 500-600 small,
+  clean and understated;
+
+  render exact text only.
+```
+
+### Transition Rule
+```
+Transition: Subtle natural separation between text area and workspace scene;
+use clean negative space or a very soft gradient only. Avoid strong white blur
+overlay, heavy dark panels, or artificial fog that makes the design look cheap.
+```
+
+### Premium Constraints
+```
+Avoid oversized typography; avoid cramped layout; avoid thick heavy text blocks;
+avoid Canva-template appearance; no fake dashboards; no random unreadable text;
+no stock-photo appearance; maintain clean editorial whitespace and premium
+commercial balance.
+```

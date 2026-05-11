@@ -272,8 +272,13 @@ Luôn xuất sau mỗi prompt:
 - [ ] Đã chọn **Text Style** phù hợp loại ảnh? (→ `modules/text-layout.md`)
 - [ ] Text có **effects đầy đủ**: font-weight số + màu + stroke/shadow/glow + vị trí?
 - [ ] Text **phân cấp rõ ràng** (kích thước, màu, weight, effects khác nhau)?
+- [ ] Với phong cách premium/editorial: typography có **restrained scale**, không chiếm quá nhiều ảnh?
+- [ ] Có **intentional whitespace** và breathing room quanh text blocks?
+- [ ] Text group có dominate scene không? Nếu có, giảm scale và tăng whitespace.
 - [ ] Foreground có ≥1 narrative prop (nếu loại ảnh yêu cầu)?
 - [ ] Background phù hợp loại ảnh (layered / texture / gradient)?
+- [ ] Transition giữa text area và scene có tự nhiên, tránh blur/overlay nặng kiểu template?
+- [ ] Realism đã đủ chưa: no stock-photo appearance, no fake dashboards, no AI-looking skin?
 - [ ] Color palette nhất quán giữa **ảnh** và **text style**?
 - [ ] Có ≥1 **decorative element** nâng tầm thiết kế?
 - [ ] **Đã gọi tool tạo ảnh** (KHÔNG chỉ xuất text prompt)?

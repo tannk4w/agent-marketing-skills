@@ -48,9 +48,57 @@ a document with header "[TIÊU ĐỀ]"
 | Pháp lý | Nameplate, sách luật, scales of justice, legal folder |
 | Tài chính | Nameplate, laptop profit chart, calculator, gold coins |
 | IT / Data | Monitor: Python/Jupyter, nameplate, book "Machine Learning" |
+| Premium Tech / Fintech Recruitment | Dual-monitor dashboards, KPI graphs, analytics reports, laptop with believable dashboard UI, handwritten notes, coffee cup, printed charts, stacked programming books |
 | Giáo dục | Textbook, whiteboard "CÔNG THỨC", red pen |
 | Y tế | Clipboard "BỆNH ÁN", prescription pad, stethoscope |
 | Marketing | Laptop: Analytics, presentation slide, business card |
+
+---
+
+## Premium Tech / Fintech Recruitment Variant
+
+> Dùng khi prompt là **bộ câu hỏi phỏng vấn**, **tuyển dụng ngành tech/data/ngân hàng**, hoặc content cần cảm giác premium recruitment campaign.
+
+### Subject
+```
+A professional Vietnamese candidate in the late 20s, natural candid posture,
+focused intelligent expression, authentic Asian skin texture, realistic facial
+asymmetry, non-stock-photo appearance. Outfit should match the role: dark navy
+office shirt, smart casual blazer, black rectangular glasses, ID badge only if
+the niche is banking/corporate.
+```
+
+### Workspace Props
+```
+Foreground: realistic naturally used workstation with dual-monitor dashboards,
+KPI graphs, analytics or financial reports, open laptop with believable UI,
+handwritten notes, coffee cup, office accessories, printed charts, stacked
+professional books, and role-specific documents. Dashboards must look credible,
+not fake or random.
+```
+
+### Background
+```
+Background: bright modern fintech/tech office with soft daylight through large
+windows, blurred whiteboards with workflow diagrams, glass office partitions,
+sticky notes, and realistic startup-tech atmosphere. Keep the background soft
+enough for depth but specific enough to avoid generic office stock-photo feel.
+```
+
+### Style Keywords
+```
+Premium Vietnamese fintech recruitment campaign aesthetic; modern editorial
+thumbnail design; authentic Southeast Asian office realism; clean blue-white,
+navy-gold, or green-gold corporate palette; luxury commercial advertising
+quality; intentional whitespace; restrained typography scale.
+```
+
+### Negative Constraints
+```
+No stock-photo appearance; no fake dashboards; no random unreadable text on
+screens; no AI-looking skin; avoid centered layout; avoid Canva-template
+appearance; avoid oversized typography; avoid cramped layout.
+```
 
 ---
 
